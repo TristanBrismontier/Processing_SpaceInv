@@ -44,7 +44,11 @@ class Ship
       return false;
     } 
   }
-
+ 
+ void setX(float x){
+   spX = x;    
+ }
+ 
   void move(float sens)
   {
     float spXt =spX+sens;
