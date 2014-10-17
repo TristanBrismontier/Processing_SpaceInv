@@ -35,29 +35,16 @@ class Ship
 
   boolean contact(float x_, float y_)
   {
-    if(x_ >spX-7*taille && x_ < spX+7*taille && y_ > spY-15*taille && y_<spY+taille )
-    {
-      return true;
-    }
-    else
-    {
-      return false;
-    } 
+    return x_ >spX-7*taille && x_ < spX+7*taille && y_ > spY-15*taille && y_<spY+taille; 
   }
 
   void move(float sens)
   {
     float spXt =spX+sens;
 
-    if( spXt > 14*width/15 )
+    if( !(spXt > 14*width/15) )
     {  
-    }
-    else
-    {
-      if( spXt< width/15 )
-      {
-      }
-      else
+      if( !(spXt< width/15) )
       {
         spX = spX +sens;
       }

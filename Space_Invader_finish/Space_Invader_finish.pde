@@ -70,7 +70,7 @@ void setup()
 
 void draw()
 {
-  afficheScore();
+  displayScore();
 
   if(conf.game==true)
   {
@@ -138,7 +138,7 @@ void draw()
         laserEn[i].display();
         if(ship.contact(laserEn[i].pX,laserEn[i].pY) == true)
         {
-          conf.shiptoucheLaser=true;
+          conf.shipIsHitLaser=true;
           laserEn[i] = new Laser(0,0);
         }
         for(int k=0; k < protec.length;k++)
@@ -216,7 +216,7 @@ void draw()
           }
           if(ship.contact(spaceInv[i][j].spX,spaceInv[i][j].spY)==true ||  spaceInv[i][j].spY>=9*height/10)
           {
-            conf.shiptouche=true;
+            conf.shipIsHit=true;
           }
           conf.jeu=true;
         }
@@ -227,13 +227,13 @@ void draw()
     }
 
 
-    changementDeSens();
+    changeOfDirection();
 
-    shipTouche();
+    shipIsHit();
 
-    if(conf.jeu==false || conf.shiptouche==true)
+    if(conf.jeu==false || conf.shipIsHit==true)
     {
-      if(conf.shiptouche==true)conf.vie-=1;
+      if(conf.shipIsHit==true)conf.vie-=1;
       if(conf.vie<0)conf.game=false;
       for(int i=0;i<cols;i++)
       {
@@ -246,7 +246,7 @@ void draw()
   }
   else
   {
-    jeuFini();
+    gameOver();
   }
   // Affichage du filtre style allow Arcade 
   image(conf.filtre, 0, 0);
@@ -315,8 +315,8 @@ void initVar()
 {
   conf.senss=false;
   conf.jeu=false;
-  conf.shiptouche=false;
-  conf.shiptoucheLaser=false;
+  conf.shipIsHit=false;
+  conf.shipIsHitLaser=false;
 }
 
 
@@ -337,7 +337,7 @@ void init(int i,int j)
 /*****  Affichage du score / Terre  / background  ******/
 
 
-void afficheScore ()
+void displayScore ()
 {
   background(0);
   textFont(conf.fontA, 15);
@@ -350,9 +350,9 @@ void afficheScore ()
 }
 
 
-/*** Quand t'a perdu ca fait ca ***/
+/*** It's Game Over ***/
 
-void jeuFini()
+void gameOver()
 {
   textFont(conf.fontA, 35);
   textAlign(CENTER);
@@ -376,9 +376,9 @@ void jeuFini()
   }
 }
 
-/*** Changement de sense et accélération  ***/
+/***  change Of Direction ***/
 
-void changementDeSens()
+void changeOfDirection()
 {
   if(conf.senss == true)
   {
@@ -398,74 +398,17 @@ void changementDeSens()
   }
 }
 
-/***  Le Ship  est Touche?? ***/
+/***  Le Ship is hit ***/
 
-void shipTouche()
+void shipIsHit()
 {
-  if(conf.shiptoucheLaser==true)
+  if(conf.shipIsHitLaser==true)
   {
     conf.vie-=1;
     if(conf.vie<0)conf.game=false;
   }
 }
 
-
-/****  Konami  ***/
-
-void konamiFonc()
-{
-  int vtemp=0;
-  if(keyCode==UP)
-  {
-    vtemp=1;
-  }
-   if(keyCode==DOWN)
- {
-   vtemp=2;
- }
-  if(keyCode==LEFT)
- {
-   vtemp=3;
- }
-  if(keyCode==RIGHT)
- {
-   vtemp=4;
- }
-  if(key=='a' || key=='A')
- {
-   vtemp=5;
- }
-  if(key=='b' || key=='B')
- {
-   vtemp=6;
- }
- for(int i=0;i<conf.konami.length-1;i++)
- {
-   conf.konami[i] = conf.konami[i+1];
-  
- }
-
- conf.konami[conf.konami.length-1] = vtemp;
-  
- vtemp=10;
- for(int i=0;i<conf.konami.length;i++)
- {
-   if(conf.konami[i] != conf.konamicode[i])
-   {
-     vtemp=9;
-   }
-   
- }
- if(vtemp == 10)
- {
-   lazer.speedy=14;
-   conf.vie=3;
-   conf.fcount=50;
-   println("konami");
- }
- 
- 
-}
 
 
 

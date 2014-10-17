@@ -6,8 +6,8 @@ class Conf
   boolean Ri,Le,Ti;
   boolean senss;
   boolean jeu;
-  boolean shiptouche;
-  boolean shiptoucheLaser;
+  boolean shipIsHit;
+  boolean shipIsHitLaser;
 
   float sense;
 
@@ -35,8 +35,8 @@ class Conf
     Ti=false;
     senss=false;
     jeu=false;
-    shiptouche=false;
-    shiptoucheLaser=false;
+    shipIsHit=false;
+    shipIsHitLaser=false;
     vie=3;
     sense=5;
     fcount=30;

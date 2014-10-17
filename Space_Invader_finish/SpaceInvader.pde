@@ -164,14 +164,7 @@ class SpaceInvader
         }
         else
         {
-          if( spX < width/15 )
-          {
-            return true;
-          } 
-          else
-          {
-            return false;
-          } 
+          return spX < width/15;
         }
       }
       else
