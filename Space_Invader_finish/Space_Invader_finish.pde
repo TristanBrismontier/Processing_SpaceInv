@@ -258,8 +258,6 @@ void draw()
 
 void keyPressed()
 {
-  konamiFonc();
-  
   if(keyCode==RIGHT)
   {
     conf.Ri=true;
