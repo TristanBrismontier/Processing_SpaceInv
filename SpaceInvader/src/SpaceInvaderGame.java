@@ -1,3 +1,5 @@
+import java.awt.Event;
+
 import processing.core.PApplet;
 
 
@@ -5,42 +7,55 @@ public class SpaceInvaderGame extends PApplet {
 	/* OpenProcessing Tweak of *@*http://www.openprocessing.org/sketch/6572*@* */
 	/* !do not delete the line above, required for linking your tweak if you re-upload */
 	/**  Clone de Space Invader **/
-	/**  Programmation Tristan Brismontier **/
+	/**  Code by Tristan Brismontier **/
 
 
-	int rows = 5;
-	int cols = 10;
-	Conf conf;
+	static final int rows = 5;
+	static final int cols = 10;
+	final Conf conf= new Conf(this);
+	Ship ship;
+	
 
 	public void setup()
 	{  
 	  size(501,432);
 	  frameRate(60);
-	  conf = new Conf(this);
+	  ship = new Ship(this);
 	}
-
-
-
-	/**************  Commencement *************/
-
-
 
 	public void draw()
 	{
-		
 	  displayScore();
-
 	  if(conf.game!=true)
 	  {
 		  gameOver();
 		  return;
 	  }
+	  ship.display();
+	  updateShip();
 
 	}
 
 
-	/***  Gestion des Touches ***/
+	/*** Ship Actions ***/
 
+	void updateShip()
+	{
+	  if(conf.Ri==true)
+	  {
+	    ship.moveRight();
+	  }
+	  if(conf.Le==true)
+	  {
+	    ship.moveLeft();
+	  }
+	  if(conf.Ti==true)
+	  {
+//	    lazer.lancement(ship.location.x);
+	  }
+	}
+	
+	
 
 	public void keyPressed()
 	{
@@ -74,23 +89,7 @@ public class SpaceInvaderGame extends PApplet {
 	  }
 	}
 
-	/*** Les Actions du ship ***/
-
-	void actionShip()
-	{
-	  if(conf.Ri==true)
-	  {
-	    ship.move(3);
-	  }
-	  if(conf.Le==true)
-	  {
-	    ship.move(-3);
-	  }
-	  if(conf.Ti==true)
-	  {
-	    lazer.lancement(ship.location.x);
-	  }
-	}
+	
 
 
 	/***  Initialistaion  de Variable de Draw()  ***/
@@ -109,11 +108,11 @@ public class SpaceInvaderGame extends PApplet {
 
 	void init(int i,int j)
 	{
-//	  spaceInv[i][j].location.x=conf.deltaX+35*i;
-//	  spaceInv[i][j].location.y=conf.deltaY+30*j;
-	  spaceInv[i][j].existe=true;
-	  conf.sense=5;
-	  conf.fcount=40;
+////	  spaceInv[i][j].location.x=conf.deltaX+35*i;
+////	  spaceInv[i][j].location.y=conf.deltaY+30*j;
+//	  spaceInv[i][j].existe=true;
+//	  conf.sense=5;
+//	  conf.fcount=40;
 	}
 
 
@@ -143,10 +142,10 @@ public class SpaceInvaderGame extends PApplet {
 	  text("GAME OVER",width/2,height/2);
 	  if(mousePressed)
 	  {
-	    for(int i=0;i<protec.length;i++)
-	    {
-	      protec[i] = new Protection(i*125+45,310,this); 
-	    }
+//	    for(int i=0;i<protec.length;i++)
+//	    {
+//	      protec[i] = new Protection(i*125+45,310,this); 
+//	    }
 	    conf.score=0;
 	    conf.vie=3;
 	    conf.game=true;

@@ -7,6 +7,7 @@ public class Entity {
 	protected PVector location;
 	protected PVector hitboxNE;
 	protected PVector hitboxSW;
+	protected boolean aLive;
 
 	public Entity(PApplet p, PVector location) {
 		this.p = p;
@@ -16,7 +17,6 @@ public class Entity {
 	}
 	
 	public void setHitbox(PVector hitboxNE,PVector hitboxSW){
-		
 		this.hitboxNE = hitboxNE;
 		this.hitboxSW = hitboxSW;
 	}
@@ -49,7 +49,14 @@ public class Entity {
 		  if (hitboxcopNE.y > otherHitboxcopNE.y+other.hitboxSW.y) { return false; }
 	
 		  return true;    
-
 	}
+
+	public boolean isaLive() {
+		return aLive;
+	}
+	public void setaLive(boolean aLive) {
+		this.aLive = aLive;
+	}
+	
 
 }
