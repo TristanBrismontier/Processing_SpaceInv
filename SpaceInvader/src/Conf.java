@@ -21,9 +21,7 @@ public class Conf {
 	int vie;
 	int score;
 	int fcount;
-	int[] konami = new int[10];
-	int[] konamicode = { 1, 1, 2, 2, 3, 4, 3, 4, 6, 5 };
-
+	
 	PImage filtre;
 	PFont fontA;
 
