@@ -8,9 +8,11 @@ public class Fleet {
 	PApplet p;
 	static final int rows = 5;
 	static final int cols = 10;
+	boolean positionFlag;
+	boolean boundaryContact=false;
 	int speedUpdate = 40;
-	int velocityX = 5;
-	int velocityY = 1;
+	float velocityX = 5;
+	int velocityY = 5;
 	int deltaX;
 	int deltaY;
 
@@ -23,6 +25,7 @@ public class Fleet {
 		invaders = new ArrayList<SpaceInvader>();
 		for (int i = 0; i < cols; i++) {
 			for (int j = 0; j < rows; j++) {
+				System.out.println(" i : " + i + " j : " +j);
 				invaders.add(createNewInvaders(i, j));
 			}
 		}
@@ -33,9 +36,40 @@ public class Fleet {
 				computeTypeFromRow(j), p);
 	}
 	
+	void update(){
+		if(p.frameCount%speedUpdate != 0) return;
+		positionFlag = !positionFlag;
+		if(boundaryContact){
+			boundaryContact = false;
+			invaders.forEach(i -> i.moveY(velocityY));
+			return;
+		}
+		for (SpaceInvader spaceInvader : invaders) {
+			if(spaceInvader.moveX(velocityX)){
+				boundaryContact = true;
+			}
+		}
+		
+		if(boundaryContact)maneuveFleet();
+	}
+	
+	private void maneuveFleet() {
+		speedUpdate-=3;
+		speedUpdate = p.constrain(speedUpdate,9,60);
+		    if(velocityX>0)
+		    {
+		    	velocityX = velocityX * -1 -0.3f ;
+		    }
+		    else
+		    {
+		    	velocityX = velocityX * -1 + 0.3f;
+		    }
+		    velocityX=p.constrain(velocityX,-12,12);
+	}
+
 	void display(){
-		System.out.println(invaders.size());
-		invaders.forEach(i -> i.display());
+		
+		invaders.forEach(i -> i.display(positionFlag));
 	}
 
 	private int computeTypeFromRow(int j) {

@@ -10,13 +10,10 @@ public class SpaceInvaderGame extends PApplet {
 	/**  Clone de Space Invader **/
 	/**  Code by Tristan Brismontier **/
 
-
-	
 	final Conf conf= new Conf(this);
 	Ship ship;
 	Fleet fleet;
 	List<Sheild> sheilds;	
-	
 
 	public void setup()
 	{  
@@ -26,8 +23,6 @@ public class SpaceInvaderGame extends PApplet {
 	  fleet = new Fleet(this);
 	  initializeSheild();
 	}
-
-
 
 	public void draw()
 	{
@@ -39,11 +34,10 @@ public class SpaceInvaderGame extends PApplet {
 	  }
 	  ship.display();
 	  fleet.display();
+	  fleet.update();
 	  sheilds.forEach(s -> s.display());
 	  updateShip();
-
 	}
-
 
 	/*** Ship Actions ***/
 
@@ -152,27 +146,6 @@ public class SpaceInvaderGame extends PApplet {
 	  }
 	}
 
-	/***  change Of Direction ***/
-
-	void changeOfDirection()
-	{
-	  if(conf.senss == true)
-	  {
-	    conf.fcount=conf.fcount-3;
-	    conf.fcount = constrain(conf.fcount,9,60);
-	    if(conf.sense>0)
-	    {
-	      conf.sense = conf.sense * -1 -0.3f ;
-	    }
-	    else
-	    {
-	      conf.sense = conf.sense * -1 + 0.3f;
-	    }
-	    conf.sense=constrain(conf.sense,-12,12);
-
-	    conf.fpY=!conf.fpY;    
-	  }
-	}
 
 	/***  Le Ship is hit ***/
 
