@@ -11,17 +11,19 @@ public class SpaceInvaderGame extends PApplet {
 	/**  Code by Tristan Brismontier **/
 
 
-	static final int rows = 5;
-	static final int cols = 10;
+	
 	final Conf conf= new Conf(this);
 	Ship ship;
+	Fleet fleet;
 	List<Sheild> sheilds;	
+	
 
 	public void setup()
 	{  
 	  size(501,432);
 	  frameRate(60);
 	  ship = new Ship(this);
+	  fleet = new Fleet(this);
 	  initializeSheild();
 	}
 
@@ -36,6 +38,7 @@ public class SpaceInvaderGame extends PApplet {
 		  return;
 	  }
 	  ship.display();
+	  fleet.display();
 	  sheilds.forEach(s -> s.display());
 	  updateShip();
 
@@ -107,9 +110,6 @@ public class SpaceInvaderGame extends PApplet {
 	  conf.shipIsHitLaser=false;
 	}
 
-
-	
-
 	private void initializeSheild() {
 		sheilds =  new ArrayList<Sheild>();
 	    for(int i=0;i<4;i++)
@@ -118,16 +118,6 @@ public class SpaceInvaderGame extends PApplet {
 	    }
 	}
 	
-	void init(int i,int j)
-	{
-////	  spaceInv[i][j].location.x=conf.deltaX+35*i;
-////	  spaceInv[i][j].location.y=conf.deltaY+30*j;
-//	  spaceInv[i][j].existe=true;
-//	  conf.sense=5;
-//	  conf.fcount=40;
-	}
-
-
 
 	/*****  Affichage du score / Terre  / background  ******/
 
@@ -152,19 +142,13 @@ public class SpaceInvaderGame extends PApplet {
 	  textFont(conf.fontA, 35);
 	  textAlign(CENTER);
 	  text("GAME OVER",width/2,height/2);
-	  if(mousePressed)
+	  if(keyPressed)
 	  {
-
+		  
 	    conf.score=0;
 	    conf.vie=3;
 	    conf.game=true;
-	    for(int i=0;i<cols;i++)
-	    {
-	      for(int j=0;j<rows;j++)
-	      {
-	        init(i,j);
-	      }
-	    }
+	
 	  }
 	}
 

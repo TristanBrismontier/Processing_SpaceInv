@@ -5,7 +5,6 @@ import processing.core.PImage;
 public class Conf {
 
 	PApplet p;
-	boolean flag;
 	boolean game;
 	boolean fpY;
 	boolean Ri, Le, Ti;
@@ -15,9 +14,6 @@ public class Conf {
 	boolean shipIsHitLaser;
 
 	float sense;
-
-	int deltaX;
-	int deltaY;
 	int vie;
 	int score;
 	int fcount;
@@ -28,9 +24,7 @@ public class Conf {
 	Conf(PApplet p) {
 		this.p = p;
 		
-		deltaX = p.width / 10 + 35;
-		deltaY = p.height / 10 + 50;
-		flag = true;
+	
 		fpY = false;
 		game = true;
 		Ri = false;
