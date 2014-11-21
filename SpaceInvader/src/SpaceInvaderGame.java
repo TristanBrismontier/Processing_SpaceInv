@@ -1,4 +1,5 @@
-import java.awt.Event;
+import java.util.ArrayList;
+import java.util.List;
 
 import processing.core.PApplet;
 
@@ -14,14 +15,17 @@ public class SpaceInvaderGame extends PApplet {
 	static final int cols = 10;
 	final Conf conf= new Conf(this);
 	Ship ship;
-	
+	List<Sheild> sheilds;	
 
 	public void setup()
 	{  
 	  size(501,432);
 	  frameRate(60);
 	  ship = new Ship(this);
+	  initializeSheild();
 	}
+
+
 
 	public void draw()
 	{
@@ -32,6 +36,7 @@ public class SpaceInvaderGame extends PApplet {
 		  return;
 	  }
 	  ship.display();
+	  sheilds.forEach(s -> s.display());
 	  updateShip();
 
 	}
@@ -103,9 +108,16 @@ public class SpaceInvaderGame extends PApplet {
 	}
 
 
-	/***  Initialisation des Invader  ***/
+	
 
-
+	private void initializeSheild() {
+		sheilds =  new ArrayList<Sheild>();
+	    for(int i=0;i<4;i++)
+	    {
+	      sheilds.add(new Sheild(i*125+45,310,this)); 
+	    }
+	}
+	
 	void init(int i,int j)
 	{
 ////	  spaceInv[i][j].location.x=conf.deltaX+35*i;
@@ -142,10 +154,7 @@ public class SpaceInvaderGame extends PApplet {
 	  text("GAME OVER",width/2,height/2);
 	  if(mousePressed)
 	  {
-//	    for(int i=0;i<protec.length;i++)
-//	    {
-//	      protec[i] = new Protection(i*125+45,310,this); 
-//	    }
+
 	    conf.score=0;
 	    conf.vie=3;
 	    conf.game=true;
