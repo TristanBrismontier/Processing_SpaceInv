@@ -15,7 +15,6 @@ public class Ship extends Entity {
 		super(p, new PVector(x_, y_));
 		this.minLimit=p.width / 15;
 		this.maxLimit=14 * p.width / 15;
-				
 	}
 
 	/**

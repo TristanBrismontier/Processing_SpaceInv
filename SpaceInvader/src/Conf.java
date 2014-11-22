@@ -14,7 +14,7 @@ public class Conf {
 	boolean shipIsHitLaser;
 
 	float sense;
-	int vie;
+	int lives;
 	int score;
 	int fcount;
 	
@@ -34,12 +34,12 @@ public class Conf {
 		jeu = false;
 		shipIsHit = false;
 		shipIsHitLaser = false;
-		vie = 3;
+		lives = 3;
 		sense = 5;
 		fcount = 30;
 		score = 0;
-//		filtre = p.loadImage("filtrejeu.tga");
-//		fontA = p.loadFont("CourierNew36.vlw");
+		filtre = p.loadImage("filtrejeu.tga");
+		fontA = p.loadFont("CourierNew36.vlw");
 	}
 
 }

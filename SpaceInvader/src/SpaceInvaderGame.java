@@ -9,50 +9,77 @@ public class SpaceInvaderGame extends PApplet {
 	 * !do not delete the line above, required for linking your tweak if you
 	 * re-upload
 	 */
+
 	/** Clone de Space Invader **/
 	/** Code by Tristan Brismontier **/
 
 	final Conf conf = new Conf(this);
 	Ship ship;
 	Fleet fleet;
-	List<Sheild> sheilds;
 	Laser laser;
+	MotherShip motherShip;
+	List<Ship> livesFeedBck;
+	List<Sheild> sheilds;
 
 	public void setup() {
 		size(501, 432);
 		frameRate(60);
 		initGame();
 	}
-	
+
 	void initGame() {
 		ship = new Ship(this);
 		fleet = new Fleet(this);
 		laser = new Laser(this, ship.location.x);
 		laser.setaLive(false);
+		motherShip = new MotherShip(this);
 		initializeSheild();
 		conf.score = 0;
-		conf.vie = 3;
+		conf.lives = 3;
+		livesFeedBck = new ArrayList<Ship>();
+		for (int i = 0; i < conf.lives; i++) {
+			livesFeedBck.add(new Ship(width - 120 + 40 * i, height / 15, this));
+		}
 	}
 
 	public void draw() {
 		displayScore();
-		if (conf.game != true) {
+		if (conf.lives <= 0) {
 			gameOver();
 			return;
 		}
 		laser.display();
 		ship.display();
 		fleet.display();
+		motherShip.display();
 		sheilds.forEach(s -> s.display());
 
 		fleet.update();
 		laser.update();
 		updateShip();
+		updateMother();
 
+		conf.score += motherShip.checkContact(laser);
 		conf.score += fleet.checkLaserContact(laser);
 		sheilds.forEach(s -> s.contact(laser));
 		sheilds.forEach(s -> s.contact(fleet.getLasers()));
-		
+		sheilds.forEach(s -> s.contactInvader(fleet.getInvaders()));
+		for (Laser invaderLaser : fleet.getLasers()) {
+			if (ship.contact(invaderLaser)) {
+				invaderLaser.setaLive(false);
+				conf.lives--;
+			}
+		}
+	}
+
+	private void updateMother() {
+		if (motherShip.aLive) {
+			motherShip.update();
+		} else {
+			if (random(1000) < 1){
+				motherShip.launchMotherShip(random(100) > 50);
+			}
+		}
 	}
 
 	/*** Ship Actions ***/
@@ -95,8 +122,6 @@ public class SpaceInvaderGame extends PApplet {
 		}
 	}
 
-
-
 	private void initializeSheild() {
 		sheilds = new ArrayList<Sheild>();
 		for (int i = 0; i < 4; i++) {
@@ -108,13 +133,18 @@ public class SpaceInvaderGame extends PApplet {
 
 	void displayScore() {
 		background(0);
-		// textFont(conf.fontA, 15);
-		// textAlign(LEFT);
-		// text("Score: ",width/20,height/15);
-		// text(conf.score,width/20+60,height/15);
+		fill(255);
+		textFont(conf.fontA, 15);
+		textAlign(LEFT);
+		text("Score: ", width / 20, height / 15);
+		text(conf.score, width / 20 + 60, height / 15);
 		strokeWeight(2);
 		stroke(0, 255, 0);
 		line(0, 9 * height / 10 + 20, width, 9 * height / 10 + 20);
+		for (int i = 0; i < conf.lives; i++) {
+			Ship ship = livesFeedBck.get(i);
+			ship.display();
+		}
 	}
 
 	/*** It's Game Over ***/
