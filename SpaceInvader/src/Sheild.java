@@ -41,7 +41,8 @@ public class Sheild extends Entity {
 	}
 
 	
-	public boolean contact(final Entity other) {
+	public boolean contact(final Laser other) {
+		if(!other.aLive)return false;
 		float pX = other.location.x;
 		float pY = other.location.y;
 		for (int i = 0; i < 15; i++) {
@@ -52,6 +53,7 @@ public class Sheild extends Entity {
 						&& pY <= i * 2 + location.y + 1
 						&& protect[i][j] == 1) {
 					destroyAround(i, j);
+					other.setaLive(false);
 					return true;
 				}
 			}

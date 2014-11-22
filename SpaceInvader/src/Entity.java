@@ -1,7 +1,6 @@
 import processing.core.PApplet;
 import processing.core.PVector;
 
-
 public class Entity {
 	protected PApplet p;
 	protected PVector location;
@@ -16,54 +15,53 @@ public class Entity {
 		this.hitboxSW = new PVector(0, 0);
 		this.aLive = true;
 	}
-	
-	public void setHitbox(PVector hitboxNE,PVector hitboxSW){
+
+	public void setHitbox(PVector hitboxNE, PVector hitboxSW) {
 		this.hitboxNE = hitboxNE;
 		this.hitboxSW = hitboxSW;
 	}
-	
-	public void display(){
-		p.fill(255,0,0,100);
+
+	public void display() {
+		p.fill(255, 0, 0, 100);
 		p.rectMode(p.CORNER);
 		p.noStroke();
-		 PVector hitboxcopNE = hitboxNE.get();
+		PVector hitboxcopNE = hitboxNE.get();
 		hitboxcopNE.add(location);
-		
-		 
-		p.rect(hitboxcopNE.x,hitboxcopNE.y,hitboxSW.x,hitboxSW.y);
+
+		p.rect(hitboxcopNE.x, hitboxcopNE.y, hitboxSW.x, hitboxSW.y);
 		p.ellipse(location.x, location.y, 5, 5);
 	}
-	
-	public PVector gethitboxNE(){
-		 PVector hitboxcopNE = hitboxNE.get();
-		 hitboxcopNE.add(location);
-		 return hitboxcopNE;
+
+	public PVector gethitboxNE() {
+		PVector hitboxcopNE = hitboxNE.get();
+		hitboxcopNE.add(location);
+		return hitboxcopNE;
 	}
-	
-	public boolean contact(Entity other){
+
+	public boolean contact(Entity other) {
 		PVector hitboxcopNE = gethitboxNE();
 		PVector otherHitboxcopNE = other.gethitboxNE();
-		
-		System.out.println(otherHitboxcopNE.x);
-		System.out.println(hitboxcopNE.x);
-		System.out.println(hitboxSW.x);
-		
-		if (hitboxcopNE.x+hitboxSW.x < otherHitboxcopNE.x) { return false; }
-		  if (hitboxcopNE.x > otherHitboxcopNE.x+other.hitboxSW.x) { return false; }
-		  if (hitboxcopNE.y+hitboxSW.y < otherHitboxcopNE.y) { return false; }
-		  if (hitboxcopNE.y > otherHitboxcopNE.y+other.hitboxSW.y) { return false; }
-		  
-		  System.out.println("Contact");
-		  return true;    
+
+		if (hitboxcopNE.x + hitboxSW.x < otherHitboxcopNE.x)
+			return false;
+		if (hitboxcopNE.x > otherHitboxcopNE.x + other.hitboxSW.x)
+			return false;
+		if (hitboxcopNE.y + hitboxSW.y < otherHitboxcopNE.y)
+			return false;
+		if (hitboxcopNE.y > otherHitboxcopNE.y + other.hitboxSW.y)
+			return false;
+
+		return true;
 	}
 
 	public boolean isaLive() {
 		return aLive;
 	}
+
 	public void setaLive(boolean aLive) {
 		this.aLive = aLive;
 	}
-	
+
 	public void setLocation(PVector location) {
 		this.location = location;
 	}
