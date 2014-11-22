@@ -70,13 +70,14 @@ public class SpaceInvaderGame extends PApplet {
 				conf.lives--;
 			}
 		}
+		image(conf.filtre, 0, -90);
 	}
 
 	private void updateMother() {
 		if (motherShip.aLive) {
 			motherShip.update();
 		} else {
-			if (random(1000) < 1){
+			if (frameCount%60 == 0 && random(100) > 75){
 				motherShip.launchMotherShip(random(100) > 50);
 			}
 		}
@@ -153,8 +154,9 @@ public class SpaceInvaderGame extends PApplet {
 		textFont(conf.fontA, 35);
 		textAlign(CENTER);
 		text("GAME OVER", width / 2, height / 2);
-		if (keyPressed) {
+		if (mousePressed) {
 			initGame();
 		}
+		image(conf.filtre, 0, -90);
 	}
 }

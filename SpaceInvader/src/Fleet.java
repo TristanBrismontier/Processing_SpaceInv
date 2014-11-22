@@ -24,7 +24,7 @@ public class Fleet {
 	public Fleet(PApplet p) {
 		this.p = p;
 		deltaX = p.width / 10 + 35;
-		deltaY = p.height / 10 + 50;
+		deltaY = p.height / 10 + 70;
 		invaders = new ArrayList<SpaceInvader>();
 		lasers = new ArrayList<Laser>();
 		for (int i = 0; i < cols; i++) {
