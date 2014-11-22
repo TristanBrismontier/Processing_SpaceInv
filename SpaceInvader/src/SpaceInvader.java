@@ -7,14 +7,13 @@ public class SpaceInvader extends Entity {
 	SpaceInvader(int X_, int Y_, int _type, PApplet p) {
 		super(p, new PVector(X_, Y_));
 		super.setHitbox(new PVector(-12, -8), new PVector(24, 16));
-		this.p = p;
 		type = _type;
 	}
 
 	public void display(boolean flag) {
 		float spX = location.x;
 		float spY = location.y;
-		if (type == 3) {
+		if (type == 1) {
 			p.noStroke();
 			p.fill(255);
 			p.rectMode(p.CORNER);
@@ -68,7 +67,7 @@ public class SpaceInvader extends Entity {
 				p.rect(-9 + spX, 6 + spY, 2, 2);
 			}
 		}
-		if (type == 1) {
+		if (type == 3) {
 			p.noStroke();
 			p.fill(255);
 			p.rectMode(p.CORNER);

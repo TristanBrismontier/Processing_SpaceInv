@@ -1,111 +1,65 @@
+  /** Space Invader Clone **/
+  /** Code by Tristan Brismontier **/
 
-class MotherShip
-{
-
-  float spX;
-  float spY;
-  int taillex;
-  int tailley;
+class MotherShip extends Entity {
   float speedx;
-  boolean existe;
-  boolean sens;
 
-
-  MotherShip()
-  {
-    spX=width/2;
-    spY=65;
-
-    existe=false;
-
+  MotherShip() {
+    super(new PVector(width / 2, 65));
+    super.setHitbox(new PVector(-16, -6), new PVector(32, 12));
+    aLive = false;
     speedx = 1;
-
-    taillex = 2;
-    tailley = 2;
   }
 
-
-
-  void display()
-  {
-    if(existe==true)
-    {
-      
-      noStroke();  
-      fill(255,10,10);
+  @Override
+  public void display() {
+    if (aLive == true) {
+      noStroke();
+      fill(255, 10, 10);
       rectMode(CORNER);
-      rect(-3*taillex+spX,-3*tailley+spY,6*taillex,tailley);
-      rect(-5*taillex+spX,-2*tailley+spY,10*taillex,tailley);
-      rect(-6*taillex+spX,-1*tailley+spY,12*taillex,tailley);
-      rect(-7*taillex+spX,0*tailley+spY,2*taillex,tailley);
-      rect(-4*taillex+spX,0*tailley+spY,2*taillex,tailley);
-      rect(-1*taillex+spX,0*tailley+spY,2*taillex,tailley);
-      rect(2*taillex+spX,0*tailley+spY,2*taillex,tailley);
-      rect(5*taillex+spX,0*tailley+spY,2*taillex,tailley);
-      rect(-8*taillex+spX,1*tailley+spY,16*taillex,tailley);
-      rect(-6*taillex+spX,2*tailley+spY,3*taillex,tailley);
-      rect(-1*taillex+spX,2*tailley+spY,2*taillex,tailley);
-      rect(3*taillex+spX,2*tailley+spY,3*taillex,tailley);
-      rect(-5*taillex+spX,3*tailley+spY,1*taillex,tailley);
-      rect(4*taillex+spX,3*tailley+spY,1*taillex,tailley);
+      rect(-6 + location.x, -6 + location.y, 12, 2);
+      rect(-10 + location.x, -4 + location.y, 20, 2);
+      rect(-12 + location.x, -2 + location.y, 24, 2);
+      rect(-14 + location.x, 0 + location.y, 4, 2);
+      rect(-8 + location.x, 0 + location.y, 4, 2);
+      rect(-2 + location.x, 0 + location.y, 4, 2);
+      rect(4 + location.x, 0 + location.y, 4, 2);
+      rect(10 + location.x, 0 + location.y, 4, 2);
+      rect(-16 + location.x, 2 + location.y, 32, 2);
+      rect(-12 + location.x, 4 + location.y, 6, 2);
+      rect(-2 + location.x, 4 + location.y, 4, 2);
+      rect(6 + location.x, 4 + location.y, 6, 2);
+      rect(-10 + location.x, 6 + location.y, 2, 2);
+      rect(8 + location.x, 6 + location.y, 2, 2);
+    }
+    super.display();
+  }
 
+  void launchMotherShip(boolean k) {
+    if (k) {
+      location.x = -14;
+      speedx = random(0.8f, 2);
+    } else {
+      location.x = width + 14;
+      speedx = -random(0.8f, 2);
+    }
+    aLive = true;
+  }
+
+  void update() {
+    if (location.x + 16 > 0 && location.x - 16 < width) {
+      location.x = location.x + speedx;
+    } else {
+      aLive = false;
     }
   }
 
-  void lancement(float k)
-  {
-    if( k < 1 )
-    {
-      
-      spX=-7*taillex;
-      sens = true;
+  int checkContact(Laser laser) {
+    if (contact(laser)) {
+      laser.setaLive(false);
+      setaLive(false);
+      return 100;
     }
-    else
-    {
-      spX=width+7*taillex;
-      sens=false;
-    }
-    speedx=random(0.8,2);
-    existe=true;
-  }
-  
-  
-  void move()
-  {
-    if(spX +8*taillex > 0 && spX - 8*taillex < width)
-    {
-      if( sens == true ) 
-      {
-         spX = spX + speedx;
-      }
-      else
-      {
-        
-        spX = spX -speedx;
-      }
-    }
-    else
-    {
-      existe=false;
-    }
-  }
-
-  boolean contact(float x_, float y_)
-  {
-    if(existe==true)
-    {
-      if(x_ < spX +8*taillex && x_ > spX - 8*taillex && y_> -3*tailley+spY && y_ < 3*tailley+spY)
-      {
-        existe=false;
-
-      } 
-      return existe;
-    }
-    else
-    {
-      return true;
-    }
+    return 0;
   }
 }
-
-

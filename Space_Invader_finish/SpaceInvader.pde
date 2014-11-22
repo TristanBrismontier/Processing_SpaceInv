@@ -1,210 +1,115 @@
-/**  Clone de Space Invader **/
-/**  Programmation Tristan Brismontier **/
+  /** Space Invader Clone **/
+  /** Code by Tristan Brismontier **/
 
-class SpaceInvader
-{
+class SpaceInvader extends Entity {
   int type;
-  float spX;
-  float spY;
-  int taillex;
-  int tailley;
-  float speedx;
-  int speedy;
-  boolean existe;
-  boolean fspY=false;
 
-  SpaceInvader()
-  {
-    spX=width/2;
-    spY=height/2;
-
-    existe=true;
-
-    speedy = 1;
-    speedx = 5;
-
-    taillex = 2;
-    tailley = 2;
+  SpaceInvader(int X_, int Y_, int _type) {
+    super(new PVector(X_, Y_));
+    super.setHitbox(new PVector(-12, -8), new PVector(24, 16));
+    type = _type;
   }
 
-  SpaceInvader(int X_, int Y_, int _type)
-  {
-    type=_type;
-    spX=X_;
-    spY=Y_;
+  public void display(boolean flag) {
+    float spX = location.x;
+    float spY = location.y;
+    if (type == 1) {
+      noStroke();
+      fill(255);
+      rectMode(CORNER);
+      rect(-4 + spX, -8 + spY, 8, 2);
+      rect(-10 + spX, -6 + spY, 20, 2);
+      rect(-12 + spX, -4 + spY, 24, 2);
+      rect(-12 + spX, -2 + spY, 6, 2);
+      rect(-2 + spX, -2 + spY, 4, 2);
+      rect(6 + spX, -2 + spY, 6, 2);
+      rect(-12 + spX, spY, 24, 2);
+      rect(2 + spX, 2 + spY, 4, 2);
+      rect(-6 + spX, 2 + spY, 4, 2);
+      rect(-2 + spX, 4 + spY, 4, 2);
 
-    existe=true;
-
-    speedy = 1;
-    speedx =5;
-
-    taillex = 2;
-    tailley = 2;
-
-  }
-
-  void display(boolean flag)
-  {
-    if(existe==true)
-    {
-      if(type==1)
-      {
-        
-        noStroke();  
-        fill(255);
-        rectMode(CORNER);
-        rect(-2*taillex+spX,-4*tailley+spY,4*taillex,tailley);   
-        rect(-5*taillex+spX,-3*tailley+spY,10*taillex,tailley);    
-        rect(-6*taillex+spX,-2*tailley+spY,12*taillex,tailley); 
-        rect(-6*taillex+spX,-1*tailley+spY,3*taillex,tailley);  
-        rect(-1*taillex+spX,-1*tailley+spY,2*taillex,tailley);
-        rect(3*taillex+spX,-1*tailley+spY,3*taillex,tailley);
-        rect(-6*taillex+spX,spY,12*taillex,tailley);
-        rect(1*taillex+spX,1*tailley+spY,2*taillex,tailley);
-        rect(-3*taillex+spX,1*tailley+spY,2*taillex,tailley);
-        rect(-1*taillex+spX,2*tailley+spY,2*taillex,tailley);
-
-        if( flag==false)
-        {
-          rect(-4*taillex+spX,2*tailley+spY,2*taillex,tailley);
-          rect(2*taillex+spX,2*tailley+spY,2*taillex,tailley);
-          rect(-6*taillex+spX,3*tailley+spY,2*taillex,tailley);
-          rect(4*taillex+spX,3*tailley+spY,2*taillex,tailley);
-        }
-        else
-        {
-          rect(-5*taillex+spX,2*tailley+spY,2*taillex,tailley);
-          rect(3*taillex+spX,2*tailley+spY,2*taillex,tailley);
-          rect(-4*taillex+spX,3*tailley+spY,2*taillex,tailley);
-          rect(2*taillex+spX,3*tailley+spY,2*taillex,tailley);
-        }
-
-      }
-      if(type==2)
-      {
-        noStroke();  
-        fill(255);
-        rectMode(CORNER);
-        rect(-3.5*taillex+spX,-5.0*tailley+spY,1*taillex,1*tailley);
-        rect(2.5*taillex+spX,-5.0*tailley+spY,1*taillex,1*tailley);
-        rect(-2.5*taillex+spX,-4.0*tailley+spY,1*taillex,1*tailley);
-        rect(1.5*taillex+spX,-4.0*tailley+spY,1*taillex,1*tailley);
-        rect(-3.5*taillex+spX,-3.0*tailley+spY,7*taillex,1*tailley);
-        rect(-3.5*taillex+spX,-3.0*tailley+spY,1*taillex,5*tailley);
-        rect(2.5*taillex+spX,-3.0*tailley+spY,1*taillex,5*tailley);
-        rect(-3.5*taillex+spX,-1.0*tailley+spY,7*taillex,2*tailley);
-        rect(-1.5*taillex+spX,-2.0*tailley+spY,3*taillex,1*tailley);
-        rect(-4.5*taillex+spX,-2.0*tailley+spY,1*taillex,2*tailley);
-        rect(3.5*taillex+spX,-2.0*tailley+spY,1*taillex,2*tailley);
-        if( flag==false)
-        {
-          rect(-5.5*taillex+spX,-1.0*tailley+spY,1*taillex,3*tailley);
-          rect(4.5*taillex+spX,-1.0*tailley+spY,1*taillex,3*tailley);
-          rect(.5*taillex+spX,2.0*tailley+spY,2*taillex,1*tailley);
-          rect(-2.5*taillex+spX,2.0*tailley+spY,2*taillex,1*tailley);
-        }
-        else
-        {
-          rect(-5.5*taillex+spX,-4.0*tailley+spY,1*taillex,3*tailley);
-          rect(4.5*taillex+spX,-4.0*tailley+spY,1*taillex,3*tailley);
-          rect(3.5*taillex+spX,2.0*tailley+spY,1*taillex,1*tailley);
-          rect(-4.5*taillex+spX,2.0*tailley+spY,1*taillex,1*tailley);
-        }
-      }
-      if(type==3)
-      {
-        noStroke();  
-        fill(255);
-        rectMode(CORNER);
-        rect(-1*taillex+spX,-3*tailley+spY,2*taillex,tailley);
-        rect(-2*taillex+spX,-2*tailley+spY,4*taillex,tailley);
-        rect(-3*taillex+spX,-1*tailley+spY,6*taillex,tailley);
-        rect(-4*taillex+spX,spY,2*taillex,tailley);
-        rect(-1*taillex+spX,spY,2*taillex,tailley);
-        rect(2*taillex+spX,spY,2*taillex,tailley);
-        rect(-4*taillex+spX,1*tailley+spY,8*taillex,tailley);
-        rect(-2*taillex+spX,2*tailley+spY,taillex,tailley);
-        rect(taillex+spX,2*tailley+spY,taillex,tailley);
-        rect(-3*taillex+spX,3*tailley+spY,taillex,tailley);
-        rect(2*taillex+spX,3*tailley+spY,taillex,tailley);
-        rect(-2*taillex+spX,4*tailley+spY,taillex,tailley);
-        rect(taillex+spX,4*tailley+spY,taillex,tailley);
-        rect(-2*taillex+spX,4*tailley+spY,taillex,tailley);
-        rect(taillex+spX,4*tailley+spY,taillex,tailley);
-
-        if( flag==false)
-        {
-          rect(-4*taillex+spX,4*tailley+spY,taillex,tailley);
-          rect(3*taillex+spX,4*tailley+spY,taillex,tailley);
-          rect(-1*taillex+spX,3*tailley+spY,2*taillex,tailley);
-        }
-
+      if (flag == false) {
+        rect(-8 + spX, 4 + spY, 4, 2);
+        rect(4 + spX, 4 + spY, 4, 2);
+        rect(-12 + spX, 6 + spY, 4, 2);
+        rect(8 + spX, 6 + spY, 4, 2);
+      } else {
+        rect(-10 + spX, 4 + spY, 4, 2);
+        rect(6 + spX, 4 + spY, 4, 2);
+        rect(-8 + spX, 6 + spY, 4, 2);
+        rect(4 + spX, 6 + spY, 4, 2);
       }
     }
+    if (type == 2) {
+      noStroke();
+      fill(255);
+      rectMode(CORNER);
+      rect(-7 + spX, -8 + spY, 2, 2);
+      rect(5 + spX, -8 + spY, 2, 2);
+      rect(-5 + spX, -6 + spY, 2, 2);
+      rect(3 + spX, -6 + spY, 2, 2);
+      rect(-7 + spX, -4 + spY, 14, 2);
+      rect(-7 + spX, -4 + spY, 2, 10);
+      rect(5 + spX, -4 + spY, 2, 10);
+      rect(-7 + spX, spY, 14, 4);
+      rect(-3 + spX, -2 + spY, 6, 2);
+      rect(-9 + spX, -2 + spY, 2, 4);
+      rect(7 + spX, -2 + spY, 2, 4);
+      if (flag == false) {
+        rect(-11 + spX, spY, 2, 6);
+        rect(9 + spX, spY, 2, 6);
+        rect(.5f * 2 + spX, 6 + spY, 4, 2);
+        rect(-5 + spX, 6 + spY, 4, 2);
+      } else {
+        rect(-11 + spX, -6 + spY, 2, 6);
+        rect(9 + spX, -6 + spY, 2, 6);
+        rect(7 + spX, 6 + spY, 2, 2);
+        rect(-9 + spX, 6 + spY, 2, 2);
+      }
+    }
+    if (type == 3) {
+      noStroke();
+      fill(255);
+      rectMode(CORNER);
+      rect(-2 + spX, spY - 8 , 4, 2);
+      rect(-4 + spX, spY - 6, 8, 2);
+      rect(-6 + spX, spY - 4, 12, 2);
+      rect(-8 + spX, spY - 2, 4, 2);
+      rect(-2 + spX, spY - 2, 4, 2);
+      rect(4 + spX, spY - 2 , 4, 2);
+      rect(-8 + spX, spY, 16, 2);
+      rect(-4 + spX, 2 + spY, 2, 2);
+      rect(2 + spX, 2 + spY, 2, 2);
+      rect(-6 + spX, 4 + spY, 2, 2);
+      rect(4 + spX, 4 + spY, 2, 2);
+      rect(-4 + spX, 6 + spY, 2, 2);
+      rect(2 + spX, 6 + spY, 2, 2);
+      rect(-4 + spX, 6 + spY, 2, 2);
+      rect(2 + spX, 6 + spY, 2, 2);
+
+      if (flag == false) {
+        rect(-8 + spX, 6 + spY, 2, 2);
+        rect(6 + spX, 6 + spY, 2, 2);
+        rect(-2 + spX, 4 + spY, 4, 2);
+      }
+
+    }
+    super.display();
   }
 
-  boolean move(float signe, boolean fpY)
-  {
-
-    if(fpY!=fspY)
-    {
-      spY = spY + 10;
-      fspY=fpY;
-      return false;    
-    }
-    else
-    {
-      //float speedxt = speedx * signe;
-      spX = spX + signe;
-      if(existe==true)
-      {
-        if( spX > 14*width/15 )
-        {      
-          return true;
-        }
-        else
-        {
-          return spX < width/15;
-        }
-      }
-      else
-      {
-        return false;
-      }
-    } 
+  void moveY(float yDelta){
+    location.y += yDelta;
   }
-
-  boolean contact(float x_, float y_)
-  {
-    if(existe==true)
-    {
-      if(x_ < 4.5*taillex+spX+taillex && x_ > -4.5*taillex+spX-taillex && y_>-5.0*tailley+spY && y_ < 2.0*tailley+spY)
-      {
-        existe=false;
-
-      } 
-      return existe;
-    }
-    else
-    {
+  
+  boolean moveX(float xDelta) {
+    location.x += xDelta;
+    if (location.x > 14 * width / 15) {
       return true;
+    } else {
+      return location.x < width / 15;
     }
   }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

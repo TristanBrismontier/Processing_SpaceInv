@@ -1,107 +1,49 @@
-/**  Clone de Space Invader **/
-/**  Programmation Tristan Brismontier **/
+  /** Space Invader Clone **/
+  /** Code by Tristan Brismontier **/
+  
+class Laser extends Entity {
 
-class Laser
-{
-  float pX;
-  float pY;
-  float taille;
-  boolean tire;
   float speedy;
   int type;
-  boolean unedeux=true;
+  boolean unedeux = true;
 
-  Laser(float x_, float y_)
-  {
-    pX=x_;
-    pY=y_;
-    taille = 3;
-    tire=false;
-    speedy=-2.5;  
+  Laser(float x_, float y_) {
+    super(new PVector(x_, y_));
+    super.setHitbox(new PVector(-3, -15), new PVector(8, 15));
+    speedy = -2.5f;
     type = 2;
   }
 
-  Laser()
-  {
-    pX=width/2;
-    pY=9*height/10;
-    taille = 2;  
-    tire=false;  
-    speedy=4.1;
+  Laser(float x) {
+    super( new PVector(x, 9 * height / 10));
+    super.setHitbox(new PVector(-1, -10), new PVector(2, 10));
+    speedy = 4f;
     type = 1;
   }
 
-  void display()
-  {
-    if(tire==true)
-    {
-      if(type==1)
-      {
-        strokeWeight(taille);
-        stroke(255);
-        line(pX,pY,pX,pY-5*taille); 
-      }
-      else
-      {
-        strokeWeight(taille-1);
-        stroke(255);
-        line(pX+taille,pY,pX-taille,pY-taille); 
-        line(pX-taille,pY-taille,pX+taille,pY-2*taille); 
-        line(pX+taille,pY-2*taille,pX-taille,pY-3*taille); 
-        line(pX-taille,pY-3*taille,pX+taille,pY-4*taille);
-       line(pX+taille,pY-4*taille,pX-taille,pY-5*taille);  
-      }
+  @Override
+  public void display() {
+    if (!aLive)
+      return;
+    stroke(255);
+    if (type == 1) {
+      strokeWeight(2);
+      line(location.x, location.y, location.x, location.y - 10);
+    } else {
+      strokeWeight(2);
+      line(location.x + 3, location.y, location.x - 3, location.y - 3);
+      line(location.x - 3, location.y - 3, location.x + 3,location.y - 6);
+      line(location.x + 3, location.y - 6, location.x - 3,location.y - 9);
+      line(location.x - 3, location.y - 9, location.x + 3,location.y - 12);
+      line(location.x + 3, location.y - 12, location.x - 3,location.y - 15);
     }
+    super.display();
   }
 
-  void move()
-  {
-    if(tire==true)
-    {
-      pY=pY - speedy; 
-      if( pY < 0 || pY > height+5*taille )
-      {
-        pX=0;
-        pY=0;
-        tire=false;
-      }
+  void update() {
+    location.y = location.y - speedy;
+    if (location.y < 0 || location.y > height + 15) {
+      aLive = false;
     }
-  }
-
-  void lancement(float x_)
-  {
-    if(tire==false)
-    {
-      tire=true;
-      pX=x_;
-      if(unedeux==true)
-      {
-         pY=9*height/10;
-         unedeux=!unedeux;
-      }
-      else
-      {
-        pY=9*height/10-2;
-        unedeux=!unedeux;
-      }
-      
-    }
-  }  
-
-  void lancement(float x_,float y_)
-  {
-    if(tire==false)
-    {
-      tire=true;
-      pX=x_;
-      pY=y_;
-      
-     
-    } 
-
   }
 }
-
-
-
-

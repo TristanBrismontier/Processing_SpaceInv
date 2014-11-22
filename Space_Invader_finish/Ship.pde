@@ -1,59 +1,70 @@
-/**  Clone de Space Invader **/
-/**  Programmation Tristan Brismontier **/
+  /** Space Invader Clone **/
+  /** Code by Tristan Brismontier **/
 
-class Ship
-{
-  float spX;
-  float spY;
-  int taille;
+class Ship extends Entity {
 
-  Ship(float x_, float y_)
-  {
-    spX=x_;
-    spY=y_;
-    taille=2;
-  }
-  Ship()
-  {
-    spX=width/2;
-    spY=9*height/10;
-    taille=2;
+  final float minLimit;
+  final float maxLimit;
+  static final float shipVelocity = 3;
+  
+  /**
+   * Create new Ship 
+   * 
+   */
+  Ship(float x_, float y_) {
+    super(new PVector(x_, y_));
+    this.minLimit=width / 15;
+    this.maxLimit=14 * width / 15;
   }
 
-  void display()
-  {
+  /**
+   * Create new Ship 
+   * With define Y value
+   */
+  Ship() {
+    super(new PVector(width / 2, 9 * height / 10));
+    super.setHitbox(new PVector(-15, -10), new PVector(30, 14));
+    this.minLimit=width / 15;
+    this.maxLimit=14 * width / 15;
+  }
+
+  @Override
+  public void display() {
+    final float x = location.x;
+    final float y = location.y;
     noStroke();
-    fill(0,255,0);
+    fill(0, 255, 0);
     rectMode(CENTER);
-    rect(spX,spY,15*taille,7*taille); 
-    rect(spX,spY-5*taille,3*taille,3*taille);
-    rect(spX,spY-7*taille,taille,taille);
+    rect(x, y, 30, 14);
+    rect(x, y - 10, 6, 6);
+    rect(x, y - 14, 2, 2);
     fill(0);
-    rect(spX-7*taille,spY-3*taille,taille,taille);
-    rect(spX+7*taille,spY-3*taille,taille,taille);
+    rect(x - 14, y - 6, 2, 2);
+    rect(x + 14, y - 6, 2, 2);
+    super.display();
   }
 
-  boolean contact(float x_, float y_)
-  {
-    return x_ >spX-7*taille && x_ < spX+7*taille && y_ > spY-15*taille && y_<spY+taille; 
+  /**
+   * Add delta to X
+   * @param delta
+   */
+  void move(float delta) {
+    location.x = constrain(location.x + delta, minLimit,maxLimit);
   }
-
-  void move(float sens)
-  {
-    float spXt =spX+sens;
-
-    if( !(spXt > 14*width/15) )
-    {  
-      if( !(spXt< width/15) )
-      {
-        spX = spX +sens;
-      }
-    }
+  
+  void moveLeft(){
+    move(-shipVelocity);
   }
-
+  
+  void moveRight(){
+    move(shipVelocity);
+  }
+  
+  /**
+   * Set X position
+   * @param newPosition
+   */
+  void setPosition(float newPosition){
+    location.x = constrain(newPosition, minLimit,maxLimit);
+  }
 }
-
-
-
-
-

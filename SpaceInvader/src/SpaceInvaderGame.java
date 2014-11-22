@@ -27,21 +27,6 @@ public class SpaceInvaderGame extends PApplet {
 		initGame();
 	}
 
-	void initGame() {
-		ship = new Ship(this);
-		fleet = new Fleet(this);
-		laser = new Laser(this, ship.location.x);
-		laser.setaLive(false);
-		motherShip = new MotherShip(this);
-		initializeSheild();
-		conf.score = 0;
-		conf.lives = 3;
-		livesFeedBck = new ArrayList<Ship>();
-		for (int i = 0; i < conf.lives; i++) {
-			livesFeedBck.add(new Ship(width - 120 + 40 * i, height / 15, this));
-		}
-	}
-
 	public void draw() {
 		displayScore();
 		if (conf.lives <= 0) {
@@ -73,17 +58,11 @@ public class SpaceInvaderGame extends PApplet {
 		image(conf.filtre, 0, -90);
 	}
 
-	private void updateMother() {
-		if (motherShip.aLive) {
-			motherShip.update();
-		} else {
-			if (frameCount%60 == 0 && random(100) > 75){
-				motherShip.launchMotherShip(random(100) > 50);
-			}
-		}
-	}
-
-	/*** Ship Actions ***/
+	/** Ship Actions 
+	 * You can directly Set X ship by call ship.setPosition(X);
+	 * This X value will be constraint by borderLimit Ship will stay on screen. 
+	 * 
+	 **/
 
 	void updateShip() {
 		if (conf.Ri == true) {
@@ -122,6 +101,16 @@ public class SpaceInvaderGame extends PApplet {
 			conf.Ti = false;
 		}
 	}
+	
+	private void updateMother() {
+		if (motherShip.aLive) {
+			motherShip.update();
+		} else {
+			if (frameCount % 60 == 0 && random(100) > 85) {
+				motherShip.launchMotherShip(random(100) > 50);
+			}
+		}
+	}
 
 	private void initializeSheild() {
 		sheilds = new ArrayList<Sheild>();
@@ -130,7 +119,20 @@ public class SpaceInvaderGame extends PApplet {
 		}
 	}
 
-	/***** Affichage du score / Terre / background ******/
+	void initGame() {
+		ship = new Ship(this);
+		fleet = new Fleet(this);
+		laser = new Laser(this, ship.location.x);
+		laser.setaLive(false);
+		motherShip = new MotherShip(this);
+		initializeSheild();
+		conf.score = 0;
+		conf.lives = 3;
+		livesFeedBck = new ArrayList<Ship>();
+		for (int i = 0; i < conf.lives; i++) {
+			livesFeedBck.add(new Ship(width - 120 + 40 * i, height / 15, this));
+		}
+	}
 
 	void displayScore() {
 		background(0);
@@ -147,8 +149,6 @@ public class SpaceInvaderGame extends PApplet {
 			ship.display();
 		}
 	}
-
-	/*** It's Game Over ***/
 
 	void gameOver() {
 		textFont(conf.fontA, 35);
