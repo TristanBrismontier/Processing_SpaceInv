@@ -14,7 +14,7 @@ public class SpaceInvader extends Entity {
 	public void display(boolean flag) {
 		float spX = location.x;
 		float spY = location.y;
-		if (type == 1) {
+		if (type == 3) {
 			p.noStroke();
 			p.fill(255);
 			p.rectMode(p.CORNER);
@@ -68,7 +68,7 @@ public class SpaceInvader extends Entity {
 				p.rect(-9 + spX, 4 + spY, 2, 2);
 			}
 		}
-		if (type == 3) {
+		if (type == 1) {
 			p.noStroke();
 			p.fill(255);
 			p.rectMode(p.CORNER);

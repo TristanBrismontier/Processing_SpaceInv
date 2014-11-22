@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import processing.core.PApplet;
@@ -75,13 +76,27 @@ public class Fleet {
 	private int computeTypeFromRow(int j) {
 		switch (j) {
 		case 0:
-			return 1;
+			return 3;
 		case 1:
 		case 2:
 			return 2;
 		default:
-			return 3;
+			return 1;
 		}
+	}
+
+	public int checkLaserContact(Laser laser) {
+		 Iterator<SpaceInvader> invIt = invaders.iterator();
+		 if(!laser.aLive)return 0;
+		  while (invIt.hasNext()) {
+			  SpaceInvader invader = invIt.next();
+		      if (invader.contact(laser)) {
+		         invIt.remove();
+		         laser.setaLive(false);
+		         return invader.type * 10;
+		      }
+		  }
+		return 0;
 	}
 
 }

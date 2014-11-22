@@ -14,6 +14,7 @@ public class SpaceInvaderGame extends PApplet {
 	Ship ship;
 	Fleet fleet;
 	List<Sheild> sheilds;	
+	Laser laser;
 
 	public void setup()
 	{  
@@ -21,6 +22,8 @@ public class SpaceInvaderGame extends PApplet {
 	  frameRate(60);
 	  ship = new Ship(this);
 	  fleet = new Fleet(this);
+	  laser = new Laser(this, ship.location.x);
+	  laser.setaLive(false);
 	  initializeSheild();
 	}
 
@@ -32,11 +35,17 @@ public class SpaceInvaderGame extends PApplet {
 		  gameOver();
 		  return;
 	  }
+	  laser.display();
 	  ship.display();
 	  fleet.display();
-	  fleet.update();
 	  sheilds.forEach(s -> s.display());
+	  
+	  fleet.update();
+	  laser.update();
 	  updateShip();
+	  
+	  fleet.checkLaserContact(laser);
+	  
 	}
 
 	/*** Ship Actions ***/
@@ -53,7 +62,9 @@ public class SpaceInvaderGame extends PApplet {
 	  }
 	  if(conf.Ti==true)
 	  {
-//	    lazer.lancement(ship.location.x);
+		  if(!laser.aLive){
+			  laser = new Laser(this, ship.location.x);
+		  }
 	  }
 	}
 	

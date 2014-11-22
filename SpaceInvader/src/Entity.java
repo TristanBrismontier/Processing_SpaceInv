@@ -14,6 +14,7 @@ public class Entity {
 		this.location = location.get();
 		this.hitboxNE = new PVector(0, 0);
 		this.hitboxSW = new PVector(0, 0);
+		this.aLive = true;
 	}
 	
 	public void setHitbox(PVector hitboxNE,PVector hitboxSW){
@@ -41,13 +42,18 @@ public class Entity {
 	
 	public boolean contact(Entity other){
 		PVector hitboxcopNE = gethitboxNE();
-		PVector otherHitboxcopNE = gethitboxNE();
+		PVector otherHitboxcopNE = other.gethitboxNE();
+		
+		System.out.println(otherHitboxcopNE.x);
+		System.out.println(hitboxcopNE.x);
+		System.out.println(hitboxSW.x);
 		
 		if (hitboxcopNE.x+hitboxSW.x < otherHitboxcopNE.x) { return false; }
 		  if (hitboxcopNE.x > otherHitboxcopNE.x+other.hitboxSW.x) { return false; }
 		  if (hitboxcopNE.y+hitboxSW.y < otherHitboxcopNE.y) { return false; }
 		  if (hitboxcopNE.y > otherHitboxcopNE.y+other.hitboxSW.y) { return false; }
-	
+		  
+		  System.out.println("Contact");
 		  return true;    
 	}
 
@@ -58,5 +64,7 @@ public class Entity {
 		this.aLive = aLive;
 	}
 	
-
+	public void setLocation(PVector location) {
+		this.location = location;
+	}
 }
