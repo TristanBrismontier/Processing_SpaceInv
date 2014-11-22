@@ -9,6 +9,7 @@ public class Fleet {
 	PApplet p;
 	static final int rows = 5;
 	static final int cols = 10;
+	static final int maxInvadersLazer = 3;	
 	boolean positionFlag;
 	boolean boundaryContact=false;
 	int speedUpdate = 40;
@@ -16,14 +17,17 @@ public class Fleet {
 	int velocityY = 5;
 	int deltaX;
 	int deltaY;
+	
 
 	List<SpaceInvader> invaders;
+	List<Laser> lasers;
 
 	public Fleet(PApplet p) {
 		this.p = p;
 		deltaX = p.width / 10 + 35;
 		deltaY = p.height / 10 + 50;
 		invaders = new ArrayList<SpaceInvader>();
+		lasers = new ArrayList<Laser>();
 		for (int i = 0; i < cols; i++) {
 			for (int j = 0; j < rows; j++) {
 				System.out.println(" i : " + i + " j : " +j);
@@ -38,7 +42,10 @@ public class Fleet {
 	}
 	
 	void update(){
+		updateLasers();
+		
 		if(p.frameCount%speedUpdate != 0) return;
+		shotLaser();
 		positionFlag = !positionFlag;
 		if(boundaryContact){
 			boundaryContact = false;
@@ -53,7 +60,29 @@ public class Fleet {
 		
 		if(boundaryContact)maneuveFleet();
 	}
+
+	private void updateLasers() {
+		 Iterator<Laser> laserIt = lasers.iterator();
+		  while (laserIt.hasNext()) {
+			  Laser laser = laserIt.next();
+			  laser.update();
+			  if(!laser.aLive){
+				  laserIt.remove();
+			  }
+		  }
+	}
 	
+	private void shotLaser() {
+		if(lasers.size() >= maxInvadersLazer) return;
+		if(p.random(100)<=75) return;
+		
+		int randomInvaderIndex = (int) p.random(invaders.size()) - 1;
+		randomInvaderIndex = p.constrain(randomInvaderIndex, 0,invaders.size()-1);
+		SpaceInvader shootingInvader = invaders.get(randomInvaderIndex);
+		
+		lasers.add(new Laser(shootingInvader.location.x, shootingInvader.location.y, p));		
+	}
+
 	private void maneuveFleet() {
 		speedUpdate-=3;
 		speedUpdate = p.constrain(speedUpdate,9,60);
@@ -69,8 +98,8 @@ public class Fleet {
 	}
 
 	void display(){
-		
 		invaders.forEach(i -> i.display(positionFlag));
+		lasers.forEach(l -> l.display());		
 	}
 
 	private int computeTypeFromRow(int j) {
@@ -99,4 +128,7 @@ public class Fleet {
 		return 0;
 	}
 
+	public List<Laser> getLasers() {
+		return lasers;
+	}
 }

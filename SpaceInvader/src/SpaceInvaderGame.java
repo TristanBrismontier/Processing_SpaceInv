@@ -52,7 +52,6 @@ public class SpaceInvaderGame extends PApplet {
 		conf.score += fleet.checkLaserContact(laser);
 		sheilds.forEach(s -> s.contact(laser));
 		
-		
 	}
 
 	/*** Ship Actions ***/
