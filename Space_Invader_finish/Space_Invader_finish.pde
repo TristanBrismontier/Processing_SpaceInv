@@ -7,7 +7,7 @@
   /** Space Invader Clone **/
   /** Code by Tristan Brismontier **/
 
-  final Conf conf = new Conf();
+  Conf conf;
   Ship ship;
   Fleet fleet;
   Laser laser;
@@ -17,6 +17,7 @@
 
   public void setup() {
     size(501, 432);
+    conf = new Conf();
     frameRate(60);
     initGame();
   }
@@ -54,7 +55,7 @@
         conf.lives--;
       }
     }
-   // image(conf.filtre, 0, -90);
+   image(conf.filtre, 0, -90);
   }
 
   /** Ship Actions 
@@ -136,10 +137,10 @@
   void displayScore() {
     background(0);
     fill(255);
-   // textFont(conf.fontA, 15);
-   // textAlign(LEFT);
-   //text("Score: ", width / 20, height / 15);
-   // text(conf.score, width / 20 + 60, height / 15);
+    textFont(conf.fontA, 15);
+    textAlign(LEFT);
+    text("Score: ", width / 20, height / 15);
+    text(conf.score, width / 20 + 60, height / 15);
     strokeWeight(2);
     stroke(0, 255, 0);
     line(0, 9 * height / 10 + 20, width, 9 * height / 10 + 20);
@@ -150,11 +151,11 @@
   }
 
   void gameOver() {
-   // textFont(conf.fontA, 35);
-   // textAlign(CENTER);
-   // text("GAME OVER", width / 2, height / 2);
+    textFont(conf.fontA, 35);
+    textAlign(CENTER);
+    text("GAME OVER", width / 2, height / 2);
     if (mousePressed) {
       initGame();
     }
-    //image(conf.filtre, 0, -90);
+   image(conf.filtre, 0, -90);
   }
