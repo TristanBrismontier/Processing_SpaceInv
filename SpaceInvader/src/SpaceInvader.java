@@ -18,80 +18,80 @@ public class SpaceInvader extends Entity {
 			p.noStroke();
 			p.fill(255);
 			p.rectMode(p.CORNER);
-			p.rect(-2 * 2 + spX, -4 * 2 + spY, 4 * 2, 2);
-			p.rect(-5 * 2 + spX, -3 * 2 + spY, 10 * 2, 2);
-			p.rect(-6 * 2 + spX, -2 * 2 + spY, 12 * 2, 2);
-			p.rect(-6 * 2 + spX, -1 * 2 + spY, 3 * 2, 2);
-			p.rect(-1 * 2 + spX, -1 * 2 + spY, 2 * 2, 2);
-			p.rect(3 * 2 + spX, -1 * 2 + spY, 3 * 2, 2);
-			p.rect(-6 * 2 + spX, spY, 12 * 2, 2);
-			p.rect(1 * 2 + spX, 1 * 2 + spY, 2 * 2, 2);
-			p.rect(-3 * 2 + spX, 1 * 2 + spY, 2 * 2, 2);
-			p.rect(-1 * 2 + spX, 2 * 2 + spY, 2 * 2, 2);
+			p.rect(-4 + spX, -8 + spY, 8, 2);
+			p.rect(-10 + spX, -6 + spY, 20, 2);
+			p.rect(-12 + spX, -4 + spY, 24, 2);
+			p.rect(-12 + spX, -2 + spY, 6, 2);
+			p.rect(-2 + spX, -2 + spY, 4, 2);
+			p.rect(6 + spX, -2 + spY, 6, 2);
+			p.rect(-12 + spX, spY, 24, 2);
+			p.rect(2 + spX, 2 + spY, 4, 2);
+			p.rect(-6 + spX, 2 + spY, 4, 2);
+			p.rect(-2 + spX, 4 + spY, 4, 2);
 
 			if (flag == false) {
-				p.rect(-4 * 2 + spX, 2 * 2 + spY, 2 * 2, 2);
-				p.rect(2 * 2 + spX, 2 * 2 + spY, 2 * 2, 2);
-				p.rect(-6 * 2 + spX, 3 * 2 + spY, 2 * 2, 2);
-				p.rect(4 * 2 + spX, 3 * 2 + spY, 2 * 2, 2);
+				p.rect(-8 + spX, 4 + spY, 4, 2);
+				p.rect(4 + spX, 4 + spY, 4, 2);
+				p.rect(-12 + spX, 6 + spY, 4, 2);
+				p.rect(8 + spX, 6 + spY, 4, 2);
 			} else {
-				p.rect(-5 * 2 + spX, 2 * 2 + spY, 2 * 2, 2);
-				p.rect(3 * 2 + spX, 2 * 2 + spY, 2 * 2, 2);
-				p.rect(-4 * 2 + spX, 3 * 2 + spY, 2 * 2, 2);
-				p.rect(2 * 2 + spX, 3 * 2 + spY, 2 * 2, 2);
+				p.rect(-10 + spX, 4 + spY, 4, 2);
+				p.rect(6 + spX, 4 + spY, 4, 2);
+				p.rect(-8 + spX, 6 + spY, 4, 2);
+				p.rect(4 + spX, 6 + spY, 4, 2);
 			}
 		}
 		if (type == 2) {
 			p.noStroke();
 			p.fill(255);
 			p.rectMode(p.CORNER);
-			p.rect(-3.5f * 2 + spX, -5.0f * 2 + spY, 1 * 2, 1 * 2);
-			p.rect(2.5f * 2 + spX, -5.0f * 2 + spY, 1 * 2, 1 * 2);
-			p.rect(-2.5f * 2 + spX, -4.0f * 2 + spY, 1 * 2, 1 * 2);
-			p.rect(1.5f * 2 + spX, -4.0f * 2 + spY, 1 * 2, 1 * 2);
-			p.rect(-3.5f * 2 + spX, -3.0f * 2 + spY, 7 * 2, 1 * 2);
-			p.rect(-3.5f * 2 + spX, -3.0f * 2 + spY, 1 * 2, 5 * 2);
-			p.rect(2.5f * 2 + spX, -3.0f * 2 + spY, 1 * 2, 5 * 2);
-			p.rect(-3.5f * 2 + spX, -1.0f * 2 + spY, 7 * 2, 2 * 2);
-			p.rect(-1.5f * 2 + spX, -2.0f * 2 + spY, 3 * 2, 1 * 2);
-			p.rect(-4.5f * 2 + spX, -2.0f * 2 + spY, 1 * 2, 2 * 2);
-			p.rect(3.5f * 2 + spX, -2.0f * 2 + spY, 1 * 2, 2 * 2);
+			p.rect(-7 + spX, -10 + spY, 2, 2);
+			p.rect(5 + spX, -10 + spY, 2, 2);
+			p.rect(-5 + spX, -8 + spY, 2, 2);
+			p.rect(3 + spX, -8 + spY, 2, 2);
+			p.rect(-7 + spX, -6 + spY, 14, 2);
+			p.rect(-7 + spX, -6 + spY, 2, 10);
+			p.rect(5 + spX, -6 + spY, 2, 10);
+			p.rect(-7 + spX, -2 + spY, 14, 4);
+			p.rect(-3 + spX, -4 + spY, 6, 2);
+			p.rect(-9 + spX, -4 + spY, 2, 4);
+			p.rect(7 + spX, -4 + spY, 2, 4);
 			if (flag == false) {
-				p.rect(-5.5f * 2 + spX, -1.0f * 2 + spY, 1 * 2, 3 * 2);
-				p.rect(4.5f * 2 + spX, -1.0f * 2 + spY, 1 * 2, 3 * 2);
-				p.rect(.5f * 2 + spX, 2.0f * 2 + spY, 2 * 2, 1 * 2);
-				p.rect(-2.5f * 2 + spX, 2.0f * 2 + spY, 2 * 2, 1 * 2);
+				p.rect(-11 + spX, -2 + spY, 2, 6);
+				p.rect(9 + spX, -2 + spY, 2, 6);
+				p.rect(.5f * 2 + spX, 4 + spY, 4, 2);
+				p.rect(-5 + spX, 4 + spY, 4, 2);
 			} else {
-				p.rect(-5.5f * 2 + spX, -4.0f * 2 + spY, 1 * 2, 3 * 2);
-				p.rect(4.5f * 2 + spX, -4.0f * 2 + spY, 1 * 2, 3 * 2);
-				p.rect(3.5f * 2 + spX, 2.0f * 2 + spY, 1 * 2, 1 * 2);
-				p.rect(-4.5f * 2 + spX, 2.0f * 2 + spY, 1 * 2, 1 * 2);
+				p.rect(-11 + spX, -8 + spY, 2, 6);
+				p.rect(9 + spX, -8 + spY, 2, 6);
+				p.rect(7 + spX, 4 + spY, 2, 2);
+				p.rect(-9 + spX, 4 + spY, 2, 2);
 			}
 		}
 		if (type == 3) {
 			p.noStroke();
 			p.fill(255);
 			p.rectMode(p.CORNER);
-			p.rect(-1 * 2 + spX, -3 * 2 + spY, 2 * 2, 2);
-			p.rect(-2 * 2 + spX, -2 * 2 + spY, 4 * 2, 2);
-			p.rect(-3 * 2 + spX, -1 * 2 + spY, 6 * 2, 2);
-			p.rect(-4 * 2 + spX, spY, 2 * 2, 2);
-			p.rect(-1 * 2 + spX, spY, 2 * 2, 2);
-			p.rect(2 * 2 + spX, spY, 2 * 2, 2);
-			p.rect(-4 * 2 + spX, 1 * 2 + spY, 8 * 2, 2);
-			p.rect(-2 * 2 + spX, 2 * 2 + spY, 2, 2);
-			p.rect(2 + spX, 2 * 2 + spY, 2, 2);
-			p.rect(-3 * 2 + spX, 3 * 2 + spY, 2, 2);
-			p.rect(2 * 2 + spX, 3 * 2 + spY, 2, 2);
-			p.rect(-2 * 2 + spX, 4 * 2 + spY, 2, 2);
-			p.rect(2 + spX, 4 * 2 + spY, 2, 2);
-			p.rect(-2 * 2 + spX, 4 * 2 + spY, 2, 2);
-			p.rect(2 + spX, 4 * 2 + spY, 2, 2);
+			p.rect(-2 + spX, -6 + spY, 4, 2);
+			p.rect(-4 + spX, -4 + spY, 8, 2);
+			p.rect(-6 + spX, -2 + spY, 12, 2);
+			p.rect(-8 + spX, spY, 4, 2);
+			p.rect(-2 + spX, spY, 4, 2);
+			p.rect(4 + spX, spY, 4, 2);
+			p.rect(-8 + spX, 2 + spY, 16, 2);
+			p.rect(-4 + spX, 4 + spY, 2, 2);
+			p.rect(2 + spX, 4 + spY, 2, 2);
+			p.rect(-6 + spX, 6 + spY, 2, 2);
+			p.rect(4 + spX, 6 + spY, 2, 2);
+			p.rect(-4 + spX, 8 + spY, 2, 2);
+			p.rect(2 + spX, 8 + spY, 2, 2);
+			p.rect(-4 + spX, 8 + spY, 2, 2);
+			p.rect(2 + spX, 8 + spY, 2, 2);
 
 			if (flag == false) {
-				p.rect(-4 * 2 + spX, 4 * 2 + spY, 2, 2);
-				p.rect(3 * 2 + spX, 4 * 2 + spY, 2, 2);
-				p.rect(-1 * 2 + spX, 3 * 2 + spY, 2 * 2, 2);
+				p.rect(-8 + spX, 8 + spY, 2, 2);
+				p.rect(6 + spX, 8 + spY, 2, 2);
+				p.rect(-2 + spX, 6 + spY, 4, 2);
 			}
 
 		}
