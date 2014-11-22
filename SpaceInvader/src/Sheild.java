@@ -1,3 +1,5 @@
+import java.util.List;
+
 import processing.core.PApplet;
 import processing.core.PVector;
 
@@ -40,6 +42,9 @@ public class Sheild extends Entity {
 		super.display();
 	}
 
+	  public void contact(final List<Laser> lasers){
+		  lasers.forEach(l -> contact(l));
+	  }
 	
 	public boolean contact(final Laser other) {
 		if(!other.aLive)return false;

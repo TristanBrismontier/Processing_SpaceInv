@@ -51,6 +51,7 @@ public class SpaceInvaderGame extends PApplet {
 
 		conf.score += fleet.checkLaserContact(laser);
 		sheilds.forEach(s -> s.contact(laser));
+		sheilds.forEach(s -> s.contact(fleet.getLasers()));
 		
 	}
 
@@ -111,7 +112,6 @@ public class SpaceInvaderGame extends PApplet {
 		// textAlign(LEFT);
 		// text("Score: ",width/20,height/15);
 		// text(conf.score,width/20+60,height/15);
-		System.out.println(conf.score);
 		strokeWeight(2);
 		stroke(0, 255, 0);
 		line(0, 9 * height / 10 + 20, width, 9 * height / 10 + 20);

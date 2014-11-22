@@ -9,7 +9,7 @@ public class Fleet {
 	PApplet p;
 	static final int rows = 5;
 	static final int cols = 10;
-	static final int maxInvadersLazer = 3;	
+	static final int maxInvadersLazer = 30;	
 	boolean positionFlag;
 	boolean boundaryContact=false;
 	int speedUpdate = 40;
@@ -44,8 +44,8 @@ public class Fleet {
 	void update(){
 		updateLasers();
 		
-		if(p.frameCount%speedUpdate != 0) return;
 		shotLaser();
+		if(p.frameCount%speedUpdate != 0) return;
 		positionFlag = !positionFlag;
 		if(boundaryContact){
 			boundaryContact = false;
@@ -74,7 +74,7 @@ public class Fleet {
 	
 	private void shotLaser() {
 		if(lasers.size() >= maxInvadersLazer) return;
-		if(p.random(100)<=75) return;
+//		if(p.random(100)<=75) return;
 		
 		int randomInvaderIndex = (int) p.random(invaders.size()) - 1;
 		randomInvaderIndex = p.constrain(randomInvaderIndex, 0,invaders.size()-1);
