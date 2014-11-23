@@ -23,7 +23,7 @@
    void setup() {
     size(500, 430);
     conf = new Conf();
-    frameRate(40);
+    frameRate(60);
     initGame();
     filtre = loadImage("filtrejeu.tga");
     fontA = loadFont("CourierNew36.vlw");
