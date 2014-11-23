@@ -56,6 +56,11 @@
         conf.lives--;
       }
     }
+    
+    if(fleet.everyInvadersAreDead()){
+      fleet = new Fleet();
+    }
+    
    image(conf.filtre, 0, -90);
   }
 

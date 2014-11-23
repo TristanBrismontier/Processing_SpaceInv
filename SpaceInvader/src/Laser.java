@@ -17,7 +17,7 @@ public class Laser extends Entity {
 	Laser(PApplet p, float x) {
 		super(p, new PVector(x, 9 * p.height / 10));
 		super.setHitbox(new PVector(-1, -10), new PVector(2, 10));
-		speedy = 4f;
+		speedy = 4;
 		type = 1;
 	}
 

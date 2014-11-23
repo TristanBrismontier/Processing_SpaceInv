@@ -12,7 +12,7 @@ public class Entity {
 
 	public Entity(PApplet p, PVector location) {
 		this.p = p;
-		this.debug = true;
+//		this.debug = true;
 		this.location = location.get();
 		this.hitboxNE = new PVector(0, 0);
 		this.hitboxSW = new PVector(0, 0);

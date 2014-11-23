@@ -7,8 +7,8 @@
   boolean positionFlag;
   boolean boundaryContact = false;
   int speedUpdate = 40;
-  float velocityX = 5;
-  int velocityY = 5;
+  float velocityX = 8;
+  int velocityY = 8;
   int deltaX;
   int deltaY;
 
@@ -17,7 +17,7 @@
 
   public Fleet() {
     deltaX = width / 10 + 35;
-    deltaY = height / 10 + 200;
+    deltaY = height / 10 + 70;
     invaders = new ArrayList<SpaceInvader>();
     lasers = new ArrayList<Laser>();
     for (int i = 0; i < cols; i++) {
@@ -147,6 +147,11 @@
     return score;
   }
 
+  public boolean everyInvadersAreDead(){
+    return invaders.isEmpty();
+  }
+  
+  
   public ArrayList<Laser> getLasers() {
     return lasers;
   }
