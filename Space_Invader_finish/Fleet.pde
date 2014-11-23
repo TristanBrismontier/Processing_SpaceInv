@@ -17,7 +17,7 @@
 
   public Fleet() {
     deltaX = width / 10 + 35;
-    deltaY = height / 10 + 70;
+    deltaY = height / 10 + 200;
     invaders = new ArrayList<SpaceInvader>();
     lasers = new ArrayList<Laser>();
     for (int i = 0; i < cols; i++) {
@@ -115,6 +115,15 @@
     default:
       return 1;
     }
+  }
+
+  boolean checkShipContact(Ship ship){
+    for(SpaceInvader invader : invaders){
+      if(invader.contact(ship)){
+        return true;
+      }
+    }
+    return false;
   }
 
   public int checkLaserContact(Laser laser) {

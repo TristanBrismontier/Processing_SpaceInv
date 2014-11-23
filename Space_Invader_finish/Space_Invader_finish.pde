@@ -47,6 +47,7 @@
      s.contactInvader(fleet.getInvaders());
     }
 
+    conf.lives = (fleet.checkShipContact(ship))?0:conf.lives;
     conf.score += motherShip.checkContact(laser);
     conf.score += fleet.checkLaserContact(laser);
     for (Laser invaderLaser : fleet.getLasers()) {

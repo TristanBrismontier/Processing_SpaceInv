@@ -24,7 +24,7 @@ public class Fleet {
 	public Fleet(PApplet p) {
 		this.p = p;
 		deltaX = p.width / 10 + 35;
-		deltaY = p.height / 10 + 70;
+		deltaY = p.height / 10 + 200;
 		invaders = new ArrayList<SpaceInvader>();
 		lasers = new ArrayList<Laser>();
 		for (int i = 0; i < cols; i++) {
@@ -114,6 +114,15 @@ public class Fleet {
 		}
 	}
 
+	public boolean checkShipContact(Ship ship){
+		for(SpaceInvader invader : invaders){
+			if(invader.contact(ship)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public int checkLaserContact(Laser laser) {
 		Iterator<SpaceInvader> invIt = invaders.iterator();
 		if (!laser.aLive)

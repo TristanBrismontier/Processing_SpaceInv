@@ -44,6 +44,7 @@ public class SpaceInvaderGame extends PApplet {
 		updateShip();
 		updateMother();
 
+		conf.lives = (fleet.checkShipContact(ship))?0:conf.lives;		
 		conf.score += motherShip.checkContact(laser);
 		conf.score += fleet.checkLaserContact(laser);
 		sheilds.forEach(s -> s.contact(laser));
