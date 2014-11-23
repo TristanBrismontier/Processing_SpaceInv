@@ -25,8 +25,8 @@ class Sheild extends Entity {
     super.setHitbox(new PVector(-1, -1), new PVector(40, 30));
   }
 
-  @Override
-  public void display() {
+
+   public void display() {
     noStroke();
     fill(0, 255, 0);
     rectMode(CENTER);
@@ -37,18 +37,20 @@ class Sheild extends Entity {
         }
       }
     }
-    super.display();
+    
   }
 
-  public void contact(final ArrayList<Laser> lasers) {
+   void contactList( ArrayList<Laser> lasers) {
     for(Laser l : lasers){
       contact(l);
     }
   }
 
-  public boolean contact(final Laser other) {
-    if (!other.aLive)
+   boolean contact( Laser other) {
+    if (!other.aLive){
       return false;
+    }
+      
     float pX = other.location.x;
     float pY = other.location.y;
     for (int i = 0; i < 15; i++) {
@@ -66,7 +68,7 @@ class Sheild extends Entity {
     return false;
   }
 
-  public void contactInvader(final ArrayList<SpaceInvader> invader) {
+   void contactInvader( ArrayList<SpaceInvader> invader) {
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 20; j++) {
         PVector particuleLoc = new PVector(j * 2 + location.x - 1, i * 2 + location.y - 1);
@@ -80,7 +82,7 @@ class Sheild extends Entity {
     }
   }
 
-  private void destroyAround(int i, int j) {
+   void destroyAround(int i, int j) {
     protect[i][j] = 0;
     for (int t = i - 2; t <= i + 2; t++) {
       for (int r = j - 2; r <= j + 2; r++) {

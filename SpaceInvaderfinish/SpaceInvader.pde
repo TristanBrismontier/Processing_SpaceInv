@@ -10,7 +10,7 @@ class SpaceInvader extends Entity {
     type = _type;
   }
 
-  public void display(boolean flag) {
+   void display(boolean flag) {
     float spX = location.x;
     float spY = location.y;
     if (type == 1) {
@@ -94,7 +94,7 @@ class SpaceInvader extends Entity {
       }
 
     }
-    super.display();
+    
   }
 
   void moveY(float yDelta){
@@ -111,5 +111,3 @@ class SpaceInvader extends Entity {
   }
 
 }
-
-

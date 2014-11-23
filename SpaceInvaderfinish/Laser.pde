@@ -5,12 +5,11 @@ class Laser extends Entity {
 
   float speedy;
   int type;
-  boolean unedeux = true;
 
   Laser(float x_, float y_) {
     super(new PVector(x_, y_));
     super.setHitbox(new PVector(-3, -15), new PVector(8, 15));
-    speedy = -2.5f;
+    speedy = -3;
     type = 2;
   }
 
@@ -21,8 +20,8 @@ class Laser extends Entity {
     type = 1;
   }
 
-  @Override
-  public void display() {
+ 
+   void display() {
     if (!aLive)
       return;
     stroke(255);
@@ -37,7 +36,7 @@ class Laser extends Entity {
       line(location.x - 3, location.y - 9, location.x + 3,location.y - 12);
       line(location.x + 3, location.y - 12, location.x - 3,location.y - 15);
     }
-    super.display();
+    
   }
 
   void update() {

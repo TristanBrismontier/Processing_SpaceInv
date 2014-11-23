@@ -11,8 +11,8 @@ class MotherShip extends Entity {
     speedx = 1;
   }
 
-  @Override
-  public void display() {
+
+   public void display() {
     if (aLive == true) {
       noStroke();
       fill(255, 10, 10);
@@ -32,7 +32,7 @@ class MotherShip extends Entity {
       rect(-10 + location.x, 6 + location.y, 2, 2);
       rect(8 + location.x, 6 + location.y, 2, 2);
     }
-    super.display();
+    
   }
 
   void launchMotherShip(boolean k) {

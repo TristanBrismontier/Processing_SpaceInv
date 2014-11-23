@@ -1,3 +1,6 @@
+/* @pjs globalKeyEvents=true; 
+ */
+
   /* OpenProcessing Tweak of *@*http://www.openprocessing.org/sketch/6572*@* */
   /*
    * !do not delete the line above, required for linking your tweak if you
@@ -8,6 +11,8 @@
   /** Code by Tristan Brismontier **/
 
   Conf conf;
+  PImage filtre;
+  PFont fontA;
   Ship ship;
   Fleet fleet;
   Laser laser;
@@ -15,14 +20,16 @@
   ArrayList<Ship> livesFeedBck;
   ArrayList<Sheild> sheilds;
 
-  public void setup() {
-    size(501, 432);
+   void setup() {
+    size(500, 430);
     conf = new Conf();
-    frameRate(60);
+    frameRate(40);
     initGame();
+    filtre = loadImage("filtrejeu.tga");
+    fontA = loadFont("CourierNew36.vlw");
   }
 
-  public void draw() {
+   void draw() {
     displayScore();
     if (conf.lives <= 0) {
       gameOver();
@@ -43,7 +50,7 @@
     for (Sheild s : sheilds){
      s.display();
      s.contact(laser);
-     s.contact(fleet.getLasers());
+     s.contactList(fleet.getLasers());
      s.contactInvader(fleet.getInvaders());
     }
 
@@ -61,7 +68,7 @@
       fleet = new Fleet();
     }
     
-   image(conf.filtre, 0, -90);
+   //image(filtre, 0, -90);
   }
 
   /** Ship Actions 
@@ -84,7 +91,7 @@
     }
   }
 
-  public void keyPressed() {
+   void keyPressed() {
     if (keyCode == RIGHT) {
       conf.Ri = true;
     }
@@ -96,7 +103,7 @@
     }
   }
 
-  public void keyReleased() {
+   void keyReleased() {
     if (keyCode == RIGHT) {
       conf.Ri = false;
     }
@@ -108,7 +115,8 @@
     }
   }
   
-  private void updateMother() {
+  
+   void updateMother() {
     if (motherShip.aLive) {
       motherShip.update();
     } else {
@@ -118,7 +126,7 @@
     }
   }
 
-  private void initializeSheild() {
+   void initializeSheild() {
     sheilds = new ArrayList<Sheild>();
     for (int i = 0; i < 4; i++) {
       sheilds.add(new Sheild(i * 125 + 45, 310));
@@ -143,7 +151,7 @@
   void displayScore() {
     background(0);
     fill(255);
-    textFont(conf.fontA, 15);
+    textFont(fontA, 15);
     textAlign(LEFT);
     text("Score: ", width / 20, height / 15);
     text(conf.score, width / 20 + 60, height / 15);
@@ -157,11 +165,11 @@
   }
 
   void gameOver() {
-    textFont(conf.fontA, 35);
+    textFont(fontA, 35);
     textAlign(CENTER);
     text("GAME OVER", width / 2, height / 2);
     if (mousePressed) {
       initGame();
     }
-   image(conf.filtre, 0, -90);
+   image(filtre, 0, -90);
   }

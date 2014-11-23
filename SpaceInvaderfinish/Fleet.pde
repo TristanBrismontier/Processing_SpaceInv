@@ -1,9 +1,9 @@
   /** Space Invader Clone **/
   /** Code by Tristan Brismontier **/
  class Fleet {
-  static final int rows = 5;
-  static final int cols = 10;
-  static final int maxInvadersLazer = 3;
+  int rows = 5;
+  int cols = 10;
+  int maxInvadersLazer = 3;
   boolean positionFlag;
   boolean boundaryContact = false;
   int speedUpdate = 40;
@@ -15,7 +15,7 @@
   ArrayList<SpaceInvader> invaders;
   ArrayList<Laser> lasers;
 
-  public Fleet() {
+   Fleet() {
     deltaX = width / 10 + 35;
     deltaY = height / 10 + 70;
     invaders = new ArrayList<SpaceInvader>();
@@ -56,7 +56,7 @@
       maneuveFleet();
   }
 
-  private void updateLasers() {
+   void updateLasers() {
     ArrayList<Laser> laserToRemove = new ArrayList<Laser>();
     for(Laser l : lasers){
       l.update();
@@ -70,7 +70,7 @@
     }
   }
 
-  private void shotLaser() {
+   void shotLaser() {
     if (lasers.size() >= maxInvadersLazer)
       return;
     if (random(100) <= 75)
@@ -85,7 +85,7 @@
         shootingInvader.location.y));
   }
 
-  private void maneuveFleet() {
+   void maneuveFleet() {
     speedUpdate -= 3;
     speedUpdate = constrain(speedUpdate, 6, 60);
     if (velocityX > 0) {
@@ -105,7 +105,7 @@
     }
   }
 
-  private int computeTypeFromRow(int j) {
+   int computeTypeFromRow(int j) {
     switch (j) {
     case 0:
       return 3;
@@ -126,7 +126,7 @@
     return false;
   }
 
-  public int checkLaserContact(Laser laser) {
+   int checkLaserContact(Laser laser) {
     if (!laser.aLive)
       return 0;
       
@@ -147,16 +147,16 @@
     return score;
   }
 
-  public boolean everyInvadersAreDead(){
+   boolean everyInvadersAreDead(){
     return invaders.isEmpty();
   }
   
   
-  public ArrayList<Laser> getLasers() {
+   ArrayList<Laser> getLasers() {
     return lasers;
   }
 
-  public ArrayList<SpaceInvader> getInvaders() {
+   ArrayList<SpaceInvader> getInvaders() {
     return invaders;
   }
 }

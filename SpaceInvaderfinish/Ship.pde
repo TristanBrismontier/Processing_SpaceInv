@@ -3,9 +3,9 @@
 
 class Ship extends Entity {
 
-  final float minLimit;
-  final float maxLimit;
-  static final float shipVelocity = 3;
+   float minLimit;
+   float maxLimit;
+    float shipVelocity = 3;
   
   /**
    * Create new Ship 
@@ -28,10 +28,10 @@ class Ship extends Entity {
     this.maxLimit=14 * width / 15;
   }
 
-  @Override
+
   public void display() {
-    final float x = location.x;
-    final float y = location.y;
+     float x = location.x;
+     float y = location.y;
     noStroke();
     fill(0, 255, 0);
     rectMode(CENTER);
@@ -41,7 +41,7 @@ class Ship extends Entity {
     fill(0);
     rect(x - 14, y - 6, 2, 2);
     rect(x + 14, y - 6, 2, 2);
-    super.display();
+    
   }
 
   /**
